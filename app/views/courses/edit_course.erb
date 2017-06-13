@@ -1,0 +1,5 @@
+<form method="post" action="/courses/<%= @course.id %>">
+  <input type="text" name="content" value="<%= course.content %>">
+  <input type="hidden" name="_method" value="patch">
+  <input type="submit" id="submit" value="Edit Course">
+</form>
