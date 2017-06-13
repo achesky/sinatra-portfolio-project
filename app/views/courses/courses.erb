@@ -1,0 +1,11 @@
+<h1>Welcome, <%= @student.username %>!</h1>
+
+<h6>Latest Reviews</h6>
+
+<% Student.all.each do |stud| %>
+  <% stud.courses.each do |course| %>
+    <%= course.review %>
+  <% end %>
+<% end %>
+
+<a href="/logout">Log Out</a>
