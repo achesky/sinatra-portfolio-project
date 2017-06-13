@@ -9,5 +9,7 @@ class Student < ActiveRecord
     User.all.find{|inst| == inst.slug}
   end
 
-
+  def authenticate(pw_attempt)
+    pw_attempt == self.password ? self : false
+  end
 end
