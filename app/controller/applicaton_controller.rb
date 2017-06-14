@@ -95,7 +95,16 @@ class ApplicationController < Sinatra::Base
     get '/courses/:id' do
       if is_logged_in?
         @course = Course.find_by_id(params[:id])
-        erb :'/courses/edit_courses'
+        erb :'/courses/edit_course'
+      else
+        redirect '/login'
+      end
+    end
+
+    get '/courses/:id/edit' do
+      if is_logged_in?
+        @course = Course.find_by_id(param[:id])
+        erb :'courses/edit_course'
       else
         redirect '/login'
       end
