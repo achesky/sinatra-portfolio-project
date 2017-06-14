@@ -85,7 +85,7 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    patch '/tweets/:id' do
+    patch '/courses/:id' do
       @new_course = Course.find_by_id(params[:id])
       @new_course.content = params[:content]
       @new_course.save
