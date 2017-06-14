@@ -117,4 +117,16 @@ class ApplicationController < Sinatra::Base
       end
       redirect '/courses'
     end
+
+    helpers do
+      def is_logged_in?
+        @session = session
+        @session.has_key?(:id) ? true : false
+      end
+
+      def current_user
+        @session = session
+        Student.find_by_id(@sessoin[:id])
+      end
+    end
 end
