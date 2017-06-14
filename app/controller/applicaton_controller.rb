@@ -19,7 +19,7 @@ class ApplicationController < Sinatra::Base
       @session = session_secret
       @session[:id] = @student.id
       if is_logged_in? && !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
-        redirect '/reviews'
+        redirect '/courses'
       else
         redirect '/signup'
       end
@@ -28,14 +28,14 @@ class ApplicationController < Sinatra::Base
     get '/signup' do
       @session = session
       if is_logged_in?
-        redirect '/reviews'
+        redirect '/courses'
       else
         erb :'/students/create_student'
     end
 
     get '/login' do
       if is_logged_in?
-        redirect '/reviews'
+        redirect '/courses'
       else
         erb :'/students/login'
       end
@@ -45,7 +45,7 @@ class ApplicationController < Sinatra::Base
       @student = Student.find_by(username: params[:username], password: params[:password])
       @session = session
       @session[:id] = @student.id
-      redirect '/reviews'
+      redirect '/courses'
     end
 
     get '/logout' do
@@ -53,10 +53,10 @@ class ApplicationController < Sinatra::Base
       redirect '/login'
     end
 
-    get '/reviews' do
+    get '/courses' do
       if is_logged_in?
         @user = User.find_by_id(session[:id])
-        erb :'/reviews/reviews'
+        erb :'/courses/courses'
       else
         redirect '/login'
       end
@@ -64,12 +64,12 @@ class ApplicationController < Sinatra::Base
 
     get '/users/:slug' do
       @student = Student.find_by_slug(params[:slug])
-      erb :'/reviews/show_reviews'
+      erb :'/courses/show_courses'
     end
 
-    get '/reviews/new' do
+    get '/courses/new' do
       if is_logged_in?
-        erb :'/reviews/create_courses/'
+        erb :'/courses/create_courses/'
       else
         redirect '/login'
       end
