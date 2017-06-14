@@ -62,5 +62,10 @@ class ApplicationController < Sinatra::Base
       end
     end
 
+    get '/users/:slug' do
+      @student = Student.find_by_slug(params[:slug])
+      erb :'/reviews/show_reviews'
+    end
+
 
 end
