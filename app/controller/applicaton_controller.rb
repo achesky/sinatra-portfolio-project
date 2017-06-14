@@ -53,5 +53,14 @@ class ApplicationController < Sinatra::Base
       redirect '/login'
     end
 
+    get '/reviews' do
+      if is_logged_in?
+        @user = User.find_by_id(session[:id])
+        erb :'/reviews/reviews'
+      else
+        redirect '/login'
+      end
+    end
+
 
 end
