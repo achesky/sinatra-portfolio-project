@@ -4,7 +4,7 @@
 
 <% Student.all.each do |stud| %>
   <% stud.courses.each do |course| %>
-    <%= course.review %>
+    <%= course.content %>
   <% end %>
 <% end %>
 

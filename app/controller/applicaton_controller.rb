@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
 
     post '/signup' do
       @student = Student.create(params)
-      @session = session_secret
+      @session = session
       @session[:id] = @student.id
       if is_logged_in? && !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
         redirect '/courses'
@@ -65,7 +65,7 @@ class ApplicationController < Sinatra::Base
 
     get '/users/:slug' do
       @student = Student.find_by_slug(params[:slug])
-      erb :'/courses/show_courses'
+      erb :'/courses/show_courses/'
     end
 
     get '/courses/new' do
@@ -96,7 +96,7 @@ class ApplicationController < Sinatra::Base
     get '/courses/:id' do
       if is_logged_in?
         @course = Course.find_by_id(params[:id])
-        erb :'/courses/edit_course'
+        erb :'/courses/edit_course/'
       else
         redirect '/login'
       end

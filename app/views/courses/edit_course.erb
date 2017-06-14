@@ -1,10 +1,10 @@
-<form method="post" action="/courses/<%= @course.id %>">
-  <input type="text" name="review" value="<%= course.review %>">
+<form method="post" action="/courses/<%= @course_id %>">
+  <input type="text" name="review" value="<%= @course.review %>">
   <input type="hidden" name="_method" value="patch">
   <input type="submit" id="submit" value="Edit Course">
 </form>
 
-<form method="post" action="/courses/<%= @course.id %>">
+<form method="post" action="/courses/<%= @course_id %>">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Course">
 </form>
