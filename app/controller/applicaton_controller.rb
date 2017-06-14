@@ -67,5 +67,13 @@ class ApplicationController < Sinatra::Base
       erb :'/reviews/show_reviews'
     end
 
+    get '/reviews/new' do
+      if is_logged_in?
+        erb :'/reviews/create_courses/'
+      else
+        redirect '/login'
+      end
+    end
+
 
 end
