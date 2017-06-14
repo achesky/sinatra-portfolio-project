@@ -55,7 +55,7 @@ class ApplicationController < Sinatra::Base
 
     get '/courses' do
       if is_logged_in?
-        @user = User.find_by_id(session[:id])
+        @student = Student.find_by_id(session[:id])
         erb :'/courses/courses'
       else
         redirect '/login'
@@ -72,6 +72,16 @@ class ApplicationController < Sinatra::Base
         erb :'/courses/create_courses/'
       else
         redirect '/login'
+      end
+    end
+
+    post '/courses' do
+      if params[:content] == ""
+        redirect '/courses/new'
+      else
+        @student = Student.find_by_id(session[:id])
+        new_tweet = Tweet.create(content: params[:content], user_id: session[:id])
+        redirect '/courses'
       end
     end
 
