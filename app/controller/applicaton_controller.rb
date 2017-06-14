@@ -91,4 +91,13 @@ class ApplicationController < Sinatra::Base
       @new_course.save
       redirect '/courses/#{@new_course.id}/edit'
     end
+
+    get '/courses/:id' do
+      if is_logged_in?
+        @course = Course.find_by_id(params[:id])
+        erb :'/courses/edit_courses'
+      else
+        redirect '/login'
+      end
+    end
 end
