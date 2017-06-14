@@ -109,4 +109,12 @@ class ApplicationController < Sinatra::Base
         redirect '/login'
       end
     end
+
+    delete '/courses/:id' do
+      @course = Course.find_by_id(params[:id])
+      if @course.user_id == session[:id]
+        @tweet.destroy
+      end
+      redirect '/courses'
+    end
 end
