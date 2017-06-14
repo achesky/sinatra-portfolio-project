@@ -1,4 +1,4 @@
-require '.config/environment'
+require './config/environment.rb'
 
 class ApplicationController < Sinatra::Base
 
@@ -31,6 +31,7 @@ class ApplicationController < Sinatra::Base
         redirect '/courses'
       else
         erb :'/students/create_student'
+      end
     end
 
     get '/login' do
