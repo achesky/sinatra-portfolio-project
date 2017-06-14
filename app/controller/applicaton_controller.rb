@@ -48,5 +48,10 @@ class ApplicationController < Sinatra::Base
       redirect '/reviews'
     end
 
+    get '/logout' do
+      session.delete(:id)
+      redirect '/login'
+    end
+
 
 end
