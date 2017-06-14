@@ -6,7 +6,7 @@ class Student < ActiveRecord::Base
   end
 
   def self.find_by_slug(slug)
-    User.all.find{|inst| == inst.slug}
+    Student.all.find{|inst| inst.slug == slug}
   end
 
   def authenticate(pw_attempt)
