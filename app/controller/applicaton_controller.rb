@@ -40,4 +40,13 @@ class ApplicationController < Sinatra::Base
         erb :'/students/login'
       end
     end
+
+    post '/login' do
+      @student = Student.find_by(username: params[:username], password: params[:password])
+      @session = session
+      @session[:id] = @student.id
+      redirect '/reviews'
+    end
+
+
 end
