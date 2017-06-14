@@ -24,4 +24,20 @@ class ApplicationController < Sinatra::Base
         redirect '/signup'
       end
     end
+
+    get '/signup' do
+      @session = session
+      if is_logged_in?
+        redirect '/reviews'
+      else
+        erb :'/students/create_student'
+    end
+
+    get '/login' do
+      if is_logged_in?
+        redirect '/reviews'
+      else
+        erb :'/students/login'
+      end
+    end
 end
