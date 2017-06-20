@@ -1,5 +1,5 @@
 <form method="post" action="/courses/<%= @course_id %>">
-  <input type="text" name="review" value="<%= @course.review %>">
+  <input type="text" name="content" value="<%= @review %>">
   <input type="hidden" name="_method" value="patch">
   <input type="submit" id="submit" value="Edit Course">
 </form>

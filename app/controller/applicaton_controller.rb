@@ -70,7 +70,7 @@ class ApplicationController < Sinatra::Base
 
     get '/courses/new' do
       if is_logged_in?
-        erb :'/courses/create_courses/'
+        erb :'/courses/create_course'
       else
         redirect '/login'
       end
@@ -81,14 +81,14 @@ class ApplicationController < Sinatra::Base
         redirect '/courses/new'
       else
         @student = Student.find_by_id(session[:id])
-        new_tweet = Tweet.create(content: params[:content], user_id: session[:id])
+        new_course = Course.create(content: params[:review], user_id: session[:id])
         redirect '/courses'
       end
     end
 
     patch '/courses/:id' do
       @new_course = Course.find_by_id(params[:id])
-      @new_course.content = params[:content]
+      @new_course.content = params[:review]
       @new_course.save
       redirect '/courses/#{@new_course.id}/edit'
     end
@@ -127,7 +127,7 @@ class ApplicationController < Sinatra::Base
 
       def current_user
         @session = session
-        Student.find_by_id(@sessoin[:id])
+        Student.find_by_id(@session[:id])
       end
     end
 end
